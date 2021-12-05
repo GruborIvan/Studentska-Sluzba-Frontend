@@ -41,11 +41,11 @@ const Header = () => {
                             {user.Username}
                         </h3>
                         {user.Type === 'STUDENT' ?
-                            <button className="ui small green button" style={{ float: 'left', marginLeft: 410 }} onClick={() => push('/studentinfo')}> Student information </button>
+                            <button className="ui small green button" style={{ float: 'left', marginLeft: 400 }} onClick={() => push('/studentinfo')}> Informacije o studentu </button>
                             :
-                            <button className="ui small green button" style={{ float: 'left', marginLeft: 400 }} onClick={() => push('/profinfo')}> Professor information </button>
+                            <button className="ui small green button" style={{ float: 'left', marginLeft: 400 }} onClick={() => push('/profinfo')}> Informacije o profesoru </button>
                         }
-                        <button className="ui small red button" style={{ marginLeft: 1300, float: 'left', marginTop: 5 }} onClick={() => onLogout()}> Log out </button>
+                        <button className="ui small red button" style={{ marginLeft: 1300, float: 'left', marginTop: 5 }} onClick={() => onLogout()}> Odjava </button>
                     </div>
             }
 

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { currentlyLoggedSelector } from '../store/selectors/index'
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ListaPredmetaComponent from './profesor/ListaPredmetaComponent';
 import PredmetiComponent from './student/PredmetiComponent';
+import ProfesorMainComponent from './profesor/ProfesorMainComponent';
 
 const MainComponent = () => {
 
@@ -22,7 +22,7 @@ const MainComponent = () => {
                 return <PredmetiComponent/>
             }
             else {
-                return <ListaPredmetaComponent/>
+                return <ProfesorMainComponent/>
             }
         }
         else {

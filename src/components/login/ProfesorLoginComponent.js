@@ -35,7 +35,7 @@ const ProfesorLoginComponent = () => {
                     <div className="field" style={{ overflow: "hidden", marginTop: 50 }}>
                         <label htmlFor="Username"> E-mail adresa: </label>
                         <div style={{ float: "left" }}>
-                            <Field type="text" name="Username" placeholder="E-mail adresa.." style={{ width: 200, marginLeft: 10 }} />
+                            <Field type="text" name="Username" placeholder="E-mail adresa.." style={{ width: 200 }} />
                         </div>
 
                         <div style={{ float: "left", marginLeft: 35 }}>

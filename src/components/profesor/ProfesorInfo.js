@@ -13,21 +13,23 @@ const ProfesorInfo = () => {
     const { push } = useHistory();
 
     useEffect(() => {
-        dispatch(GetProfesorInfo(user.Username));
+        dispatch(GetProfesorInfo(user.Username));   // eslint-disable-next-line
     }, []);
 
     const getZvanje = (brZvanja) => {
         switch(brZvanja) {
-            case 0 : return 'Docent';
-            case 1: return 'Vanredni profesor'
-            case 2: return 'Redovni profesor'
+            case 0 : return <b> Docent </b> ;
+            case 1: return <b> Vanredni profesor </b>
+            case 2: return <b> Redovni profesor </b>
+            default: return <b> Docent </b>
         }
     }
 
     const renderedZvanjaProfesora = profesor === null ? <div></div> : profesor.Zvanja.map(zvanje => {
         return <tr>
-                <td> {zvanje.DatumDobijanjaZvanja.substring(0,10)} </td>
                 <td> { getZvanje(zvanje.Zvanje)} </td>
+                <td> {zvanje.DatumDobijanjaZvanja.substring(0,10)} </td>
+                <td> {zvanje.DatumKrajaVazenjaZvanja.substring(0,10)} </td>
             </tr>
         
     });
@@ -83,8 +85,9 @@ const ProfesorInfo = () => {
 
                     <table className="ui blue table">
                         <thead>
-                            <th> Datum ostvarivanja zvanja: </th>
                             <th> Zvanje: </th>
+                            <th> Datum ostvarivanja zvanja: </th>
+                            <th> Datum kraja važenja zvanja: </th>
                         </thead>
                         <tbody>
                             {renderedZvanjaProfesora}

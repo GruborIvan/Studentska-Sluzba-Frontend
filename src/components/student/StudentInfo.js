@@ -13,7 +13,7 @@ const StudentInfo = () => {
     const student = useSelector(studentInfoSelector);
 
     useEffect(() => {
-        dispatch(GetStudentInfo(user.Username));
+        dispatch(GetStudentInfo(user.Username));    // eslint-disable-next-line
     }, []);
 
     const renderedTokStudija = student === null ? <div></div> : student.TokStudija.map(tok => {

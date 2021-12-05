@@ -5,7 +5,9 @@ const ENDPOINTS = {
     PREDMETI: '/Predmet',
     STUDENT: '/Student',
     PROFESOR: '/Profesor',
-    REZULTATI: '/Rezultati'
+    REZULTATI: '/Rezultati',
+    ISPIT : '/Ispit',
+    ROK: '/Rok',
 }
 
 const login = async (payload) => {
@@ -34,8 +36,46 @@ const getProfesorInfo = async (payload) => {
 }
 
 const getPredmetiStudent = async (payload) => {
-    const response = await axiosClient.get(ENDPOINTS.REZULTATI + '?brIndeksa=' + payload.brIndeksa + '&mode=' + payload.mode);
+    const ispRok = payload.mode === 2 ? 1 : payload.ispitniRok;
+    const response = await axiosClient.get(ENDPOINTS.REZULTATI + '?brIndeksa=' + payload.brIndeksa + '&mode=' + payload.mode + '&ispitniRokId=' + ispRok);
     return response.data;
+}
+
+const prijavaIspita = async (payload) => {
+    await axiosClient.post(ENDPOINTS.ISPIT,payload)
+}
+
+const getPrijavljeniIspiti = async (payload) => {
+    const response = await axiosClient.get(ENDPOINTS.ISPIT + '?brojIndeksa=' + payload)
+    console.log(response.data);
+    return response.data;
+}
+
+const getPredmetiZaOcenjivanje = async (payload) => {
+    const response = await axiosClient.get(ENDPOINTS.PREDMETI + '?profesorId=' + payload);
+    return response.data;
+}   
+
+const getStudentsZaOcenjivanje = async (payload) => {
+    const response = await axiosClient.get(ENDPOINTS.PROFESOR + '?predmetId=' + payload.PredmetId + '&rokId=' + payload.RokId);
+    return response.data;
+}
+
+const postOcena = async (payload) => {
+    await axiosClient.post(ENDPOINTS.PROFESOR,payload)
+}
+
+const getIspitniRokovi = async () => {
+    const response = await axiosClient.get(ENDPOINTS.ROK)
+    return response.data;
+}
+
+const addIspitniRok = async (payload) => {
+    await axiosClient.post(ENDPOINTS.ROK,payload);
+}
+
+const odjavaIspita = async (payload) => {
+    await axiosClient.post(ENDPOINTS.REZULTATI,payload)
 }
 
 const authService = {
@@ -44,6 +84,14 @@ const authService = {
     getStudentInfo,
     getProfesorInfo,
     getPredmetiStudent,
+    prijavaIspita,
+    getPrijavljeniIspiti,
+    getPredmetiZaOcenjivanje,
+    getStudentsZaOcenjivanje,
+    postOcena,
+    getIspitniRokovi,
+    addIspitniRok,
+    odjavaIspita,
 }
 
 export default authService;

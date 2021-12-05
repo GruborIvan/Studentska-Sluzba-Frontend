@@ -1,50 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetPredmetiStudent } from '../../store/actions';
+import { GetPredmetiStudent, GetPrijavljeniIspiti, PrijavaIspita } from '../../store/actions';
 import { currentlyLoggedSelector, predmetiStudentSelector } from '../../store/selectors';
 import NepolozeniPredmeti from './NepolozeniPredmeti';
 import PolozeniPredmeti from './PolozeniPredmeti';
+import PrijavljeniIspiti from './PrijavljeniIspiti';
 
 const PredmetiComponent = () => {
 
     const [selection, setSelection] = useState(1);
+    const [selectedIspitniRok,setSelectedIspitniRok] = useState(2013)
     const dispatch = useDispatch();
     const loggedInUser = useSelector(currentlyLoggedSelector);
     const predmeti = useSelector(predmetiStudentSelector);
 
     useEffect(() => {
-        dispatch(GetPredmetiStudent({ brIndeksa: loggedInUser.Username, mode: selection }))
-    },[selection])
+        if (selection === 3) {
+            dispatch(GetPrijavljeniIspiti(loggedInUser.Username));
+        }
+        else {
+            dispatch(GetPredmetiStudent({ brIndeksa: loggedInUser.Username, mode: selection,ispitniRok: selectedIspitniRok }))
+        }   // eslint-disable-next-line
+    },[selection,selectedIspitniRok])
+
+    const prijavaIspita = (ispitId) => {
+        dispatch(PrijavaIspita({ BrojIndeksa: loggedInUser.Username, IspitId: ispitId, IspitniRokId: selectedIspitniRok }));
+        dispatch(GetPredmetiStudent({ brIndeksa: loggedInUser.Username, mode: selection,ispitniRok: selectedIspitniRok }));
+    }
 
     const renderPredmetiContent = () => {
         switch(selection) {
-            case 1 : return <NepolozeniPredmeti/>
-            case 2 : return <PolozeniPredmeti/>
-            default : return <div> NEPOLOZENI </div>
+            case 1 : return <NepolozeniPredmeti predmeti={predmeti} setIspitniRok={setSelectedIspitniRok} ispitniRok={selectedIspitniRok} prijavaIspita={prijavaIspita}/>
+            case 2 : return <PolozeniPredmeti predmeti={predmeti}/>
+            case 3 : return <PrijavljeniIspiti />
+            default : return <div> NOT IMPLEMENTED </div>
         }
     }
 
-    console.log(predmeti)
-
     return (<div style={{ overflow: 'hidden' }}>
 
-        <div className="ui vertical pointing menu" style={{ width: 165, marginTop: 50, marginLeft: 15, float: 'left' }}>
+        <div className="ui vertical pointing menu" style={{ width: 165, marginTop: 50, marginLeft: 50, float: 'left' }}>
             <button className={`ui green button item ${selection === 1 ? 'active' : ''}`} style={{ width: '100%' }} onClick={() => setSelection(1)}>
-                All Notifications
+                Nepolozeni predmeti
             </button>
 
             <button className={`ui green button item ${selection === 2 ? 'active' : ''}`} style={{ width: '100%' }} onClick={() => setSelection(2)}>
-                Unread Notifications
+                Polozeni predmeti
             </button>
 
             <button className={`ui green button item ${selection === 3 ? 'active' : ''}`} style={{ width: '100%' }} onClick={() => setSelection(3)}>
-                Errors
-                <i className="x icon" style={{ color: 'red' }}></i>
+                Prijavljeni ispiti
             </button>
 
         </div>
 
-        <div style={{ marginTop: 50, marginLeft: 280 }}>
+        <div style={{ marginTop: 30, marginLeft: 260 }}>
             {renderPredmetiContent()}
         </div>
 
