@@ -31,7 +31,7 @@ const PolozeniPredmeti = ({ predmeti }) => {
             <td data-label="Naziv Predmeta">{predmet.NazivPredmeta}</td>
             <td data-label="Profesor">{predmet.ImeProfesora}</td>
             <td data-label="Broj ESPB">{predmet.BrojESPB}</td>
-            <td data-label="Ocena">  </td>
+            <td data-label="Ocena">{predmet.Ocena}</td>
         </tr>
     });
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetPredmetiStudent, GetPrijavljeniIspiti, PrijavaIspita } from '../../store/actions';
 import { currentlyLoggedSelector, predmetiStudentSelector } from '../../store/selectors';
+import PasswordChangeComponent from '../PasswordChangeComponent';
 import NepolozeniPredmeti from './NepolozeniPredmeti';
 import PolozeniPredmeti from './PolozeniPredmeti';
 import PrijavljeniIspiti from './PrijavljeniIspiti';
@@ -33,6 +34,7 @@ const PredmetiComponent = () => {
             case 1 : return <NepolozeniPredmeti predmeti={predmeti} setIspitniRok={setSelectedIspitniRok} ispitniRok={selectedIspitniRok} prijavaIspita={prijavaIspita}/>
             case 2 : return <PolozeniPredmeti predmeti={predmeti}/>
             case 3 : return <PrijavljeniIspiti />
+            case 4 : return <PasswordChangeComponent userType="Student" />
             default : return <div> NOT IMPLEMENTED </div>
         }
     }
@@ -50,6 +52,13 @@ const PredmetiComponent = () => {
 
             <button className={`ui green button item ${selection === 3 ? 'active' : ''}`} style={{ width: '100%' }} onClick={() => setSelection(3)}>
                 Prijavljeni ispiti
+            </button>
+
+            <button className="ui green button item" style={{ width: '100%', height: 42 }}></button>
+
+            <button className={`ui green button item ${selection === 4 ? 'active' : ''}`} style={{ width: '100%' }} onClick={() => setSelection(4)}>
+                <i className="sun outline icon"/>
+                Podešavanja
             </button>
 
         </div>

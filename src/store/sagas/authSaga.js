@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { ADD_ISPITNI_ROK, GET_ISPITI_ZA_OCENJIVANJE, GET_ISPITNI_ROKOVI, GET_PREDMETI, GET_PREDMETI_STUDENT, GET_PRIJAVLJENI_ISPITI, GET_PROFESOR_INFO, GET_STUDENTS_ZA_OCENJIVANJE, GET_STUDENT_INFO, LOGIN, LOGOUT, OCENA, ODJAVA_ISPITA, PRIJAVA_ISPITA } from "../../constants/action-types";
+import { ADD_ISPITNI_ROK, CHANGE_PASSWORD, GET_ISPITI_ZA_OCENJIVANJE, GET_ISPITNI_ROKOVI, GET_PREDMETI, GET_PREDMETI_STUDENT, GET_PRIJAVLJENI_ISPITI, GET_PROFESOR_INFO, GET_STUDENTS_ZA_OCENJIVANJE, GET_STUDENT_INFO, LOGIN, LOGOUT, OCENA, ODJAVA_ISPITA, PDF, PRIJAVA_ISPITA } from "../../constants/action-types";
 import authService from "../../services/AuthService";
 import { deleteCurrentlyLogged, saveCurrentlyLoggedInUser, SaveIspitiZaOcenjivanje, SaveIspitniRokovi, SavePredmeti, SavePredmetiStudent, SaveProfesorInfo, SaveStudentInfo, SaveStudentiZaOcenjivanje } from '../actions/index'
 
@@ -81,6 +81,14 @@ function* odjavaIspita({ payload }) {
     yield put(SavePredmetiStudent(response));
 }
 
+function* changePassword({ payload }) {
+    yield call(authService.changePassword,payload);
+}
+
+function* makePdf({ payload }) {
+    yield call(authService.makePDF,payload)
+}
+
 export default function* authSaga() {
     yield takeLatest(LOGIN,loginUser)
     yield takeLatest(LOGOUT,logoutUser)
@@ -96,4 +104,6 @@ export default function* authSaga() {
     yield takeLatest(GET_ISPITNI_ROKOVI,getIspitniRokovi)
     yield takeLatest(ADD_ISPITNI_ROK,addIspitniRok)
     yield takeLatest(ODJAVA_ISPITA,odjavaIspita)
+    yield takeLatest(CHANGE_PASSWORD,changePassword)
+    yield takeLatest(PDF,makePdf)
 }

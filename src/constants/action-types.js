@@ -30,3 +30,7 @@ export const OCENA = 'OCENA';
 export const GET_ISPITNI_ROKOVI = 'GET_ISPITNI_ROKOVI';
 export const SAVE_ISPITNI_ROKOVI = 'SAVE_ISPITNI_ROKOVI';
 export const ADD_ISPITNI_ROK = 'ADD_ISPITNI_ROK';
+
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+
+export const PDF = 'PDF';

@@ -8,6 +8,7 @@ const ENDPOINTS = {
     REZULTATI: '/Rezultati',
     ISPIT : '/Ispit',
     ROK: '/Rok',
+    PDF: '/Pdf'
 }
 
 const login = async (payload) => {
@@ -78,6 +79,14 @@ const odjavaIspita = async (payload) => {
     await axiosClient.post(ENDPOINTS.REZULTATI,payload)
 }
 
+const changePassword = async (payload) => {
+    await axiosClient.put(ENDPOINTS.AUTH,payload);
+}
+
+const makePDF = async (payload) => {
+    await axiosClient.get(ENDPOINTS.PDF + '?predmetId=' + payload.predmetId + '&rokId=' + payload.ispitniRokId)
+}
+
 const authService = {
     login,
     getPredmeti,
@@ -92,6 +101,8 @@ const authService = {
     getIspitniRokovi,
     addIspitniRok,
     odjavaIspita,
+    changePassword,
+    makePDF,
 }
 
 export default authService;

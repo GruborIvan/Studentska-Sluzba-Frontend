@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetStudentiZaOcenjivanje } from '../../store/actions';
+import { GetStudentiZaOcenjivanje, MakePDF } from '../../store/actions';
 import { studentiZaOcenjivanjeSelector } from '../../store/selectors';
 import BodoviInsertComponent from './BodoviInsertComponent';
 
@@ -15,7 +15,7 @@ const StudentiListComponent = ({ predmetId, ispitniRokId }) => {
         setCurrentStudent(null);    // eslint-disable-next-line
     }, [predmetId, ispitniRokId])
 
-    const renderedStudents = studenti === null ? <div></div> : studenti.map(student => {
+    const renderedStudents = studenti === null ? <tr></tr> : studenti.map(student => {
         return <tr key={student.Id}>
             <td>{student.Ime}</td>
             <td>{student.Prezime}</td>
@@ -34,7 +34,14 @@ const StudentiListComponent = ({ predmetId, ispitniRokId }) => {
 
     return <div style={{ overflow: 'hidden' }}>
         <div className="ui padded raised segment" style={{ width: 750, float: 'left' }}>
-            <h4 style={{ marginTop: 10, marginLeft: 170 }}> Studenti koji su prijavili ispit u naznačenom roku </h4>
+            <div style={{ overflow: 'hidden' }}>
+                <h4 style={{ marginTop: 10, marginLeft: 170, float: 'left' }}> Studenti koji su prijavili ispit u naznačenom roku </h4>
+                <button className="ui mini orange button" style={{ marginLeft: 40, marginTop: 8 }}
+                    onClick={() => dispatch(MakePDF({predmetId: predmetId, ispitniRokId: ispitniRokId}))}>
+                    <i className="ui file icon"></i>
+                    Generisanje PDF-a
+                </button>
+            </div>
 
             <table className="ui celled table" style={{ width: 600, marginTop: 30, marginLeft: 50 }}>
                 <thead>
