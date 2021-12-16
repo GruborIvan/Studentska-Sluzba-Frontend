@@ -27,8 +27,8 @@ const PasswordChangeComponent = ({ userType }) => {
         dispatch(ChangePassword(sendData));
     }
 
-    return <div className="ui raised green segment" style={{ width: 420, marginLeft: 300, marginTop: 40, float: 'left' }}>
-        <h3> Promena lozinke za korisnika: </h3>
+    return <div className="ui raised green segment" style={{ width: 500, marginLeft: 300, marginTop: 40, float: 'left' }}>
+        <h3 style={{ marginLeft: 100 }}> Promena lozinke za korisnika: </h3>
 
         <Formik
             onSubmit={onPasswordChange}
@@ -36,10 +36,10 @@ const PasswordChangeComponent = ({ userType }) => {
             validationSchema={validationSheme}>
 
             <Form>
-                <div style={{ marginTop: 20, marginLeft: 30 }}>
-                    <label htmlFor="OldPassword"> Current password: </label>
-                    <div className="ui small input focus">
-                        <Field type="password" name="OldPassword" placeholder="Old password..." style={{ width: 250 }} />
+                <div style={{ marginTop: 50, marginLeft: 30 }}>
+                    <label htmlFor="OldPassword"> Trenutna lozinka: </label>
+                    <div className="ui small input focus" style={{ marginLeft: 40 }}>
+                        <Field type="password" name="OldPassword" placeholder="Trenutna lozinka..." style={{ width: 250 }} />
                     </div>
                     <ErrorMessage name="OldPassword">
                         {(msg) => <div style={{ color: "red", marginLeft: 80 }}> {msg} </div>}
@@ -47,10 +47,10 @@ const PasswordChangeComponent = ({ userType }) => {
                 </div>
                 <br />
 
-                <div style={{ marginLeft: 30 }}>
-                    <label htmlFor="NewPassword"> Current password: </label>
-                    <div className="ui small input focus">
-                        <Field type="password" name="NewPassword" placeholder="New password..." style={{ width: 250 }} />
+                <div style={{ marginLeft: 30, marginTop: 15 }}>
+                    <label htmlFor="NewPassword"> Nova lozinka: </label>
+                    <div className="ui small input focus" style={{ marginLeft: 63 }}>
+                        <Field type="password" name="NewPassword" placeholder="Nova lozinka..." style={{ width: 250 }} />
                     </div>
                     <ErrorMessage name="NewPassword">
                         {(msg) => <div style={{ color: "red", marginLeft: 80 }}> {msg} </div>}
@@ -58,9 +58,9 @@ const PasswordChangeComponent = ({ userType }) => {
                 </div>
                 <br />
 
-                <div style={{ marginLeft: 30 }}>
-                    <label htmlFor="ConfirmPassword"> Current password: </label>
-                    <div className="ui small input focus">
+                <div style={{ marginLeft: 30, marginTop: 15 }}>
+                    <label htmlFor="ConfirmPassword"> Potvrda nove lozinke: </label>
+                    <div className="ui small input focus" style={{ marginLeft: 12 }}>
                         <Field type="password" name="ConfirmPassword" placeholder="Confirm password..." style={{ width: 250 }} />
                     </div>
                     <ErrorMessage name="ConfirmPassword">
@@ -68,7 +68,10 @@ const PasswordChangeComponent = ({ userType }) => {
                     </ErrorMessage>
                 </div>
 
-                <button type="submit" className="ui small primary button" style={{ marginLeft: 80, marginTop: 20 }}> Apply changes </button>
+                <button type="submit" className="ui small primary button" style={{ marginLeft: 130, marginTop: 50 }}>
+                    <i className="ui file icon" style={{ marginRight: 15 }}/> 
+                    Potvrda promene lozinke 
+                </button>
             </Form>
 
         </Formik>

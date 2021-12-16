@@ -11,18 +11,15 @@ const PolozeniPredmeti = ({ predmeti }) => {
     }
 
     const prosek = () => {
-        if (predmeti.Rezultati != null) {
-            if (predmeti.length === 0) {
-                return 0;
-            }
-            let prosek = 0;
-            for (let i = 0; i < predmeti.length; i++) {
-                prosek += parseInt(predmeti[i].Rezultati.Ocena);
-            }
-            console.log(prosek)
-            return prosek / predmeti.length * 100;
+        if (predmeti.length === 0) {
+            return 0;
         }
-        return "";
+        let prosek = 0;
+        for (let i = 0; i < predmeti.length; i++) {
+            prosek += parseInt(predmeti[i].Ocena);
+        }
+        let prosek100 = prosek / predmeti.length * 100 + '';
+        return [prosek100.slice(0, 1), '.', prosek100.slice(1, 3)].join('')
     }
 
     const renderContent = predmeti === null ? <tr><td data-label="Sifra predmeta">Nema polozenih predmeta</td></tr> : predmeti.map(predmet => {
@@ -54,9 +51,39 @@ const PolozeniPredmeti = ({ predmeti }) => {
             </table>
         </div>
 
-        
-        <h5 style={{ float: 'left', marginLeft: 40 }}> Broj ESPB: {brojESPB()} </h5>
-        <h5 style={{ float: 'left', marginLeft: 900 }}> Prosek: {prosek()} </h5>
+        <div style={{ overflow: 'hidden' }}>
+            <div>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h5 style={{ float: 'left', marginLeft: 40 }}> Ukupan broj ESPB:</h5>
+                            </td>
+                            <td>
+                                <h5 style={{ float: 'left', marginLeft: 14 }}> {brojESPB()} </h5>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h5 style={{ float: 'left', marginLeft: 40 }}> Prosek:</h5>
+                            </td>
+                            <td>
+                                <h5 style={{ float: 'left', marginLeft: 900 }}> Prosek: {prosek()} </h5>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 }
 

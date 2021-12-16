@@ -8,7 +8,7 @@ const AuthComponent = () => {
     const [adminAvailable, setAdminAvailable] = useState(false);
 
     return (<div>
-        <div className="ui placeholder segment" style={{ marginTop: 40 }}>
+        <div className="ui placeholder segment" style={{ marginTop: 30 }}>
             <div className="ui two column stackable center aligned grid">
                 <div className="ui vertical divider">ILI</div>
                 <div className="middle aligned row">
@@ -23,7 +23,7 @@ const AuthComponent = () => {
         </div>
 
         <div style={{ overflow: 'hidden' }}>
-            <button className="ui secondary button" style={{ marginTop: 30, marginLeft: 20, float: 'left' }} onClick={() => setAdminAvailable(!adminAvailable)}>
+            <button className="ui secondary button" style={{ marginTop: 5, marginLeft: 20, float: 'left' }} onClick={() => setAdminAvailable(!adminAvailable)}>
                 Administratorske preferencije
             </button>
             
