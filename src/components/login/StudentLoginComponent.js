@@ -6,7 +6,7 @@ import { Login } from '../../store/actions/index'
 import { useHistory } from 'react-router-dom';
 
 const validationSheme = yup.object().shape({
-    Password: yup.string().required("Password is required!"),
+    Password: yup.string().required("Morate uneti lozinku!"),
 })
 
 const StudentLoginComponent = () => {

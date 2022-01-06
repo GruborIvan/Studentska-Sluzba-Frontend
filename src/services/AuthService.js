@@ -17,7 +17,7 @@ const login = async (payload) => {
         return response.status;
     }
     catch(error) {
-        alert('Invalid username/password combination!')
+        alert('Pogrešno uneti username ili password. Pokušajte ponovo.')
     }
 }
 

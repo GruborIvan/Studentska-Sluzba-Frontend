@@ -74,10 +74,10 @@ const PolozeniPredmeti = ({ predmeti }) => {
                     <tbody>
                         <tr>
                             <td>
-                                <h5 style={{ float: 'left', marginLeft: 40 }}> Prosek:</h5>
+                                <h5 style={{ float: 'left', marginLeft: 900 }}> Prosek:</h5>
                             </td>
                             <td>
-                                <h5 style={{ float: 'left', marginLeft: 900 }}> Prosek: {prosek()} </h5>
+                                <h5 style={{ float: 'left', marginLeft: 30 }}> {prosek()} </h5>
                             </td>
                         </tr>
                     </tbody>
